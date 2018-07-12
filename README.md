@@ -1,38 +1,26 @@
 google-analytics-plugin
 =======================
-[![npm](https://img.shields.io/npm/v/cordova-plugin-google-analytics.svg)](https://www.npmjs.com/package/cordova-plugin-google-analytics)
-[![npm](https://img.shields.io/npm/dt/cordova-plugin-google-analytics.svg?label=npm%20downloads)](https://www.npmjs.com/package/cordova-plugin-google-analytics)
+[![npm](https://img.shields.io/npm/v/cordova-plugin-google-analytics-fluxit.svg)](https://www.npmjs.com/package/cordova-plugin-google-analytics-fluxit)
+[![npm](https://img.shields.io/npm/dt/cordova-plugin-google-analytics-fluxit.svg?label=npm%20downloads)](https://www.npmjs.com/package/cordova-plugin-google-analytics-fluxit)
 [![MIT license](http://img.shields.io/badge/license-MIT-brightgreen.svg)](http://opensource.org/licenses/MIT)
 
-Cordova (PhoneGap) 3.0+ Plugin to connect to Google's native Universal Analytics SDK
+Cordova (PhoneGap) 7.0+ Plugin to connect to Google's native Universal Analytics SDK
+
+
+# Comments
+This is a fork of [google-analytics-pligin](https://github.com/danwilson/google-analytics-plugin) by Dan Wilson. I removed all platfoms but iOS and Android and fixed google-play-services issue appling this [PR](https://github.com/danwilson/google-analytics-plugin/pull/508).
 
 Prerequisites:
-* A Cordova 3.0+ project for iOS, Android, browser (PWA), Windows Phone 8 and/or Windows 10 (UWP)
+* A Cordova 7.0+ project for iOS or Android
 * A Mobile App property through the Google Analytics Admin Console
 * (Android) Google Play Services SDK installed via [Android SDK Manager](https://developer.android.com/sdk/installing/adding-packages.html)
 
 # Installing
 
-This plugin follows the Cordova 3.0+ plugin spec, so it can be installed through the Cordova CLI in your existing Cordova project:
-```bash
-cordova plugin add https://github.com/danwilson/google-analytics-plugin.git
-```
-
-This plugin is also available on npm if you are using Cordova 5.0+:
+This plugin follows the Cordova 7.0+ plugin spec, so it can be installed through the Cordova CLI in your existing Cordova project:
 ```bash
 cordova plugin add cordova-plugin-google-analytics-fluxit
 ```
-
-
-*Important Note* If the latest versions (0.8.0+) of this plugin are not working for you with Android on Cordova 5.0+, please try the suggestions in [Issues 123](https://github.com/danwilson/google-analytics-plugin/issues/123#issuecomment-151145095). Google Play Services has been very confusing to integrate, but in recent months it has been simplified.  This plugin uses the new simpler way (including it as a framework instead of bundling it which can conflict with other plugins bundling it), but if you previously installed this plugin some old files might still be lingering.
-
-The plugin.xml file will add the Google Analytics SDK files for Android, iOS, browser (PWA), Windows Phone 8 and/or Windows 10 (UWP).  Follow [Google's steps](#sdk-files) if you need to update these later.  Also make sure to review the Google Analytics [terms](http://www.google.com/analytics/terms/us.html) and [SDK Policy](https://developers.google.com/analytics/devguides/collection/protocol/policy)
-
-If you are not using the CLI, follow the steps in the section [Installing Without the CLI](#nocli)
-
-Windows Phone users have to manually add the [Google Analytics SDK for Windows 8 and Windows Phone](https://googleanalyticssdk.codeplex.com/) to your solution. To do this, just open your Cordova solution in Visual Studio, and add the [GoogleAnalyticsSDK package via NuGet](http://nuget.org/packages/GoogleAnalyticsSDK). This plugin requires v1.3.0 or higher.
-
-Windows 10 (UWP) users have to manually add the [Windows SDK for Google Analytics](https://github.com/dotnet/windows-sdk-for-google-analytics) to your solution. To do this, just open your Cordova solution in Visual Studio, and add the [UWP.SDKforGoogleAnalytics.Native package via NuGet](http://nuget.org/packages/UWP.SDKforGoogleAnalytics.Native). This plugin requires v1.5.2 or higher.
 
 # Release note
 
@@ -172,7 +160,7 @@ Copy the files manually into your project and add the following to your config.x
 ```
 ```xml
 <feature name="UniversalAnalytics">
-  <param name="android-package" value="com.danielcwilson.plugins.analytics.UniversalAnalyticsPlugin" />
+  <param name="android-package" value="com.fluxit.plugins.analytics.UniversalAnalyticsPlugin" />
 </feature>
 ```
 ```xml
@@ -194,32 +182,4 @@ var analyticsService = require('app/data/AnalyticsService');
 
 analyticsService.trackView('Home');
 ```
-
-# Browser (PWA)
-
-For browser (PWA), people who want to use the plugin in a website that has already integrated google analytics needs
-to make sure that they remove the google analytics snippet from the head section of the page and change the global `ga`
-object name to something else. The plugin uses `nativeGa` instead. This can be changed by the following code.
-
-```js
-// insert this in your head
-<script>
-window['GoogleAnalyticsObject'] = 'fooGa';
-</script>
-```
-
-The plugin will pick up the new name.
-
-# Windows 10 (UWP)
-
-The following plugin methods are (currently) not supported by the UWP.SDKforGoogleAnalytics.Native package:
-* `setAllowIDFACollection()`
-* `addTransaction()`
-* `addTransactionItem()`
-
-Unexpected behaviour may occur on the following methods:
-* `trackView()`: campaign details are currently not supported and therefore not tracked.
-* `trackMetric()`: there is currently a bug in version 1.5.2 of the [UWP.SDKforGoogleAnalytics.Native package via NuGet](http://nuget.org/packages/UWP.SDKforGoogleAnalytics.Native),
-that the wrong data specifier `cd` is taken for metrics, whereas `cm` should be the correct specifier.
-So as long as this bug is not fixed, trackMetrics will overwrite previous addCustomDimension with same index!!
 
