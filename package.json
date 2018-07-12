@@ -11,7 +11,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/niconaso/google-analytics-plugin.git"
+    "url": "git+https://github.com/niconaso/cordova-plugin-google-analytics-fluxit.git"
   },
   "keywords": [
     "cordova",
@@ -27,9 +27,9 @@
   "author": "Nicolás Naso",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/niconaso/google-analytics-plugin/issues"
+    "url": "https://github.com/niconaso/cordova-plugin-google-analytics-fluxit/issues"
   },
-  "homepage": "https://github.com/niconaso/google-analytics-plugin#readme",
+  "homepage": "https://github.com/niconaso/cordova-plugin-google-analytics-fluxit#readme",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
