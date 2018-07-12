@@ -11,7 +11,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/niconaso/google-analytics-plugin"
+    "url": "git+https://github.com/niconaso/google-analytics-plugin.git"
   },
   "keywords": [
     "cordova",
@@ -25,5 +25,13 @@
     "universalanalytics"
   ],
   "author": "Nicolás Naso",
-  "license": "MIT"
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/niconaso/google-analytics-plugin/issues"
+  },
+  "homepage": "https://github.com/niconaso/google-analytics-plugin#readme",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  }
 }
