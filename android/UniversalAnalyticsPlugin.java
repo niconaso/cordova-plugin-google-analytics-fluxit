@@ -1,4 +1,4 @@
-package com.danielcwilson.plugins.analytics;
+package com.fluxit.plugins.analytics;
 
 import com.google.android.gms.analytics.GoogleAnalytics;
 import com.google.android.gms.analytics.Logger.LogLevel;
@@ -160,7 +160,7 @@ public class UniversalAnalyticsPlugin extends CordovaPlugin {
         if (null == value || value.length() == 0) {
             // unset dimension
             customDimensions.remove(key);
-            callbackContext.success("custom dimension stopped");    
+            callbackContext.success("custom dimension stopped");
         } else {
             customDimensions.put(key, value);
             callbackContext.success("custom dimension started");

@@ -20,13 +20,9 @@ cordova plugin add https://github.com/danwilson/google-analytics-plugin.git
 
 This plugin is also available on npm if you are using Cordova 5.0+:
 ```bash
-cordova plugin add cordova-plugin-google-analytics
+cordova plugin add cordova-plugin-google-analytics-fluxit
 ```
 
-... OR the Cordova Plugin Registry if you are using a version of Cordova before 5.0 (while it remains open, as it is planning to shut down soon due to the move to npm):
-```bash
-cordova plugin add com.danielcwilson.plugins.googleanalytics
-```
 
 *Important Note* If the latest versions (0.8.0+) of this plugin are not working for you with Android on Cordova 5.0+, please try the suggestions in [Issues 123](https://github.com/danwilson/google-analytics-plugin/issues/123#issuecomment-151145095). Google Play Services has been very confusing to integrate, but in recent months it has been simplified.  This plugin uses the new simpler way (including it as a framework instead of bundling it which can conflict with other plugins bundling it), but if you previously installed this plugin some old files might still be lingering.
 
@@ -43,8 +39,8 @@ Windows 10 (UWP) users have to manually add the [Windows SDK for Google Analytic
 v1.0.0 -- api change from ```window.analytics``` to ```window.ga```, 'analytics' is deprecated since 1.0.0 and you should use the new api 'ga',
 because in the next release we are removing the analytics.
 
-v1.7.x -- since this version there are new parameters in some of the old methods like `startTrackerWithId('UA-XXXX-YY', 30)` 
-and this is causing errors for those who are using the ionic 2(ionic-native) or ionic 1 (ngCordova); 
+v1.7.x -- since this version there are new parameters in some of the old methods like `startTrackerWithId('UA-XXXX-YY', 30)`
+and this is causing errors for those who are using the ionic 2(ionic-native) or ionic 1 (ngCordova);
 these wrapper interfaces don't have the new parameters at the time we did the changes; so please update you ionic framework to the lastest version.
 
 v1.7.11 -- since this version there is back compatibility with the new and old parameters in the method `startTrackerWithId('UA-XXXX-YY', 30)` to avoid loading issues reported.
@@ -129,8 +125,8 @@ window.ga.setAllowIDFACollection(true)
 To enable verbose logging:
 window.ga.debugMode()
 // set's dry run mode on Android and Windows platform, so that all hits are only echoed back by the google analytics service and no actual hit is getting tracked!
-// **Android quirk**: verbose logging within javascript console is not supported. To see debug responses from analytics execute 
-// `adb shell setprop log.tag.GAv4 DEBUG` and then `adb logcat -v time -s GAv4` to list messages 
+// **Android quirk**: verbose logging within javascript console is not supported. To see debug responses from analytics execute
+// `adb shell setprop log.tag.GAv4 DEBUG` and then `adb logcat -v time -s GAv4` to list messages
 // (see https://developers.google.com/android/reference/com/google/android/gms/analytics/Logger)
 
 //To enable/disable automatic reporting of uncaught exceptions
@@ -148,7 +144,7 @@ import { Platform } from 'ionic-angular';
 ...
 
   constructor(private ga: GoogleAnalytics, private platform: Platform) { }
-  
+
   initializeApp() {
     this.platform.ready().then(() => {
       this.ga.startTrackerWithId('UA-00000000-0')
@@ -158,7 +154,7 @@ import { Platform } from 'ionic-angular';
           this.ga.debugMode();
           this.ga.setAllowIDFACollection(true);
         })
-        .catch(e => console.log('Error starting GoogleAnalytics', e));      
+        .catch(e => console.log('Error starting GoogleAnalytics', e));
     });
   }
 ```
@@ -192,13 +188,6 @@ You also will need to manually add the Google Analytics SDK files:
 * For Windows Phone, add the [GoogleAnalyticsSDK package via NuGet](http://nuget.org/packages/GoogleAnalyticsSDK)
 * For Windows 10 (UWP), add the [UWP.SDKforGoogleAnalytics.Native package via NuGet](http://nuget.org/packages/UWP.SDKforGoogleAnalytics.Native)
 
-# Integrating with Lavaca
-
-The `lavaca` directory includes a component that can be added to a <a href="http://getlavaca.com">Lavaca</a> project.  It offers a way to use the web `analytics.js` when the app is running in the browser and not packaged as Cordova.
-
-* Copy `AnalyticsService.js` to your Lavaca project (I create a directory under `js/app` called `data`).
-* In your config files (`local.json`, `staging.json`, `production.js`) create properties called `google_analytics_id` (for the Mobile App UA property) and `google_analytics_web_id` (for the Web UA property) and set the appropriate IDs or leave blank as needed.
-* In any file you want to track screen views or events, require AnalyticsService and use the methods provided.
 
 ```javascript
 var analyticsService = require('app/data/AnalyticsService');
@@ -208,8 +197,8 @@ analyticsService.trackView('Home');
 
 # Browser (PWA)
 
-For browser (PWA), people who want to use the plugin in a website that has already integrated google analytics needs 
-to make sure that they remove the google analytics snippet from the head section of the page and change the global `ga` 
+For browser (PWA), people who want to use the plugin in a website that has already integrated google analytics needs
+to make sure that they remove the google analytics snippet from the head section of the page and change the global `ga`
 object name to something else. The plugin uses `nativeGa` instead. This can be changed by the following code.
 
 ```js

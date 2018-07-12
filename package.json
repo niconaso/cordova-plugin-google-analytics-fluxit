@@ -1,19 +1,17 @@
 {
-  "name": "cordova-plugin-google-analytics",
-  "version": "1.8.3",
+  "name": "cordova-plugin-google-analytics-fluxit",
+  "version": "1.8.4",
   "description": "Google Universal Analytics Plugin",
   "cordova": {
-    "id": "cordova-plugin-google-analytics",
+    "id": "cordova-plugin-google-analytics-fluxit",
     "platforms": [
       "android",
-      "ios",
-      "windows",
-      "browser"
+      "ios"
     ]
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/danwilson/google-analytics-plugin.git"
+    "url": "https://github.com/niconaso/google-analytics-plugin"
   },
   "keywords": [
     "cordova",
@@ -26,6 +24,6 @@
     "universal",
     "universalanalytics"
   ],
-  "author": "Dan Wilson",
+  "author": "Nicolás Naso",
   "license": "MIT"
 }
